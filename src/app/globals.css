@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/*
+ * THEME TOKENS
+ * -----------------------------------------------------------------------
+ * Warm cream + soft coral/terracotta + a touch of muted gold. Component
+ * files reference these via semantic Tailwind classes (bg-bg-main,
+ * text-blue-soft, border-border-subtle, etc.) rather than literal hex
+ * values, so the whole app's look can be changed from this one file.
+ * The "blue-*" variable names are historical (the app's first theme was
+ * dark navy/blue) — they now hold the coral/terracotta accent instead.
+ * -----------------------------------------------------------------------
+ */
+
+:root {
+  --bg-main: #faf5e9;
+  --bg-secondary: #f2ead8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fbf2e0;
+  --border-subtle: #e6dcc3;
+  --blue-dark: #a8451f;
+  --blue-primary: #db6e3d;
+  --blue-bright: #c55a2c;
+  --blue-soft: #c1552b;
+  --yellow: #e8b84b;
+  --text-primary: #2a2318;
+  --text-secondary: #857a63;
+}
+
+@theme inline {
+  --color-bg-main: var(--bg-main);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-border-subtle: var(--border-subtle);
+  --color-blue-dark: var(--blue-dark);
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-bright: var(--blue-bright);
+  --color-blue-soft: var(--blue-soft);
+  --color-yellow: var(--yellow);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--blue-primary);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Very soft — a whisper of warmth, not a glow. Kept deliberately subtle
+   per the "not too vibrant" direction. */
+.glow-bg {
+  background:
+    radial-gradient(55% 40% at 50% 0%, rgba(219, 110, 61, 0.07) 0%, rgba(219, 110, 61, 0) 70%),
+    radial-gradient(35% 25% at 85% 10%, rgba(232, 184, 75, 0.06) 0%, rgba(232, 184, 75, 0) 70%),
+    var(--bg-main);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, var(--text-primary) 0%, var(--blue-soft) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Hustle Wrapped story progress segment */
+@keyframes story-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.story-fill {
+  animation-name: story-fill;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
